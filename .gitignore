@@ -5,3 +5,9 @@
 # Ignore Python cache
 __pycache__/
 *.pyc
+
+# Ignore local virtual environments
+kafka-spark-env/
+venv/
+.venv/
+env/
