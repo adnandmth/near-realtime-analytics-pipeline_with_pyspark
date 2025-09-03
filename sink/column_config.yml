@@ -1,0 +1,8 @@
+vehicles:
+  id: SERIAL PRIMARY KEY
+  deviceId: TEXT
+  model: TEXT
+  year: INT
+  make: TEXT
+  created_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  updated_at: TIMESTAMP DEFAULT CURRENT_TIMESTAMP

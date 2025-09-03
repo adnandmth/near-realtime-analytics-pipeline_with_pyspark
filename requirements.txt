@@ -1,11 +1,65 @@
-boto3==1.35.72
-botocore==1.35.72
-confluent-kafka==2.6.0
-jmespath==1.0.1
-py4j==0.10.9.7
-pyspark==3.5.3
-python-dateutil==2.9.0.post0
-s3transfer==0.10.4
-simplejson==3.19.3
-six==1.16.0
-urllib3==2.2.3
+# --- Data Processing / Analytics ---
+numpy
+pandas
+pyspark
+SQLAlchemy
+psycopg2-binary
+
+# --- AWS / Cloud ---
+boto3
+botocore
+s3transfer
+jmespath
+
+# --- Kafka / Streaming ---
+kafka-python
+py4j
+
+# --- Logging / JSON ---
+python-json-logger
+
+# --- Date/Time Utilities ---
+python-dateutil
+pytz
+tzdata
+
+# --- Interactive / Shell / Notebook ---
+ipython
+ipython_pygments_lexers
+matplotlib-inline
+prompt_toolkit
+pexpect
+ptyprocess
+wcwidth
+
+# --- Linting / Code Quality ---
+flake8
+pycodestyle
+pyflakes
+mccabe
+
+# --- Syntax Highlighting / Parsing ---
+Pygments
+parso
+jedi
+
+# --- JSON / Schema / Validation ---
+jsonschema
+jsonschema-specifications
+referencing
+rpds-py
+
+# --- Utilities / Misc ---
+asttokens
+attrs
+decorator
+executing
+pure_eval
+six
+stack-data
+traitlets
+typing_extensions
+python-dotenv
+PyYAML
+pydantic
+pydantic-settings
