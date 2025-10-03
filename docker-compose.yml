@@ -12,8 +12,8 @@ x-spark-common: &spark-common
     - spark-master
   environment:
     SPARK_MODE: Worker
-    SPARK_WORKER_CORES: 2
-    SPARK_WORKER_MEMORY: 1g
+    SPARK_WORKER_CORES: 3
+    SPARK_WORKER_MEMORY: 8g
     SPARK_MASTER_URL: spark://spark-master:7077
   networks:
     - datamasterylab
@@ -146,20 +146,6 @@ services:
     ports:
       - "9090:8080" # Spark web UI
       - "7077:7077"
-    networks:
-      - datamasterylab
-
-  postgres:
-    image: bitnami/postgresql:14
-    container_name: postgres
-    environment:
-      - POSTGRESQL_USERNAME=admin
-      - POSTGRESQL_PASSWORD=admin123
-      - POSTGRESQL_DATABASE=postgres
-    ports:
-      - "5433:5432"
-    volumes:
-      - postgres_data:/bitnami/postgresql
     networks:
       - datamasterylab
 

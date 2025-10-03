@@ -4,49 +4,43 @@ import time
 import json
 from datetime import datetime, timedelta
 
-# Coordinates for simulation
-LONDON_COORDINATES = {"latitude": 51.5074, "longitude": -0.1278}
-BIRMINGHAM_COORDINATES = {"latitude": 52.4862, "longitude": -1.8904}
-LATITUDE_INCREMENT = (BIRMINGHAM_COORDINATES['latitude'] - LONDON_COORDINATES['latitude']) / 100
-LONGITUDE_INCREMENT = (BIRMINGHAM_COORDINATES['longitude'] - LONDON_COORDINATES['longitude']) / 100
+# List of countries to simulate machine deployment
+COUNTRIES = ("id", "ph", "us", "jp", "sg")
 
 random.seed(42)
 start_time = datetime.now()
-start_location = LONDON_COORDINATES.copy()
 
 def get_next_time():
     global start_time
     start_time += timedelta(seconds=random.randint(30, 60))
     return start_time
 
-def simulate_vehicle_movement():
-    global start_location
-    start_location['latitude'] += LATITUDE_INCREMENT + random.uniform(-0.0005, 0.0005)
-    start_location['longitude'] += LONGITUDE_INCREMENT + random.uniform(-0.0005, 0.0005)
-    return start_location
-
-def generate_vehicle_data(device_id):
+def generate_machine_data(device_id):
     current_timestamp_ms = int(time.time() * 1000)
-    location = simulate_vehicle_movement()
-    
+
     json_data = {
         "timestamp": current_timestamp_ms,
-        "country": "id",
+        "country": random.choice(COUNTRIES),
         "service": "kinesis-connector",
-        "table": "vehicle_movement",
+        "table": "orange_juicer_events",
         "event": "insert",
         "record": {
             "id": str(uuid.uuid4()),
             "deviceId": device_id,
             "timestamp": get_next_time().isoformat(),
-            "location": location,  # Use location as a dictionary,
-            "speed": random.uniform(10, 40),
-            "direction": 'North-East',
-            "make": 'BMW',
-            "model": 'C500',
-            "year": 2024,
-            "fuelType": 'Hybrid'
+            "machineStatus": random.choice(["Idle", "Juicing", "Cleaning", "Error"]),
+            "orangesUsed": random.randint(1, 5),
+            "juiceVolume_ml": round(random.uniform(200, 400), 2),  # ml of juice produced
+            "cupSize": random.choice(["Small", "Medium", "Large"]),
+            "temperature_C": round(random.uniform(4, 10), 1),  # storage temp
+            "sugarLevel": random.choice(["No Sugar", "Less Sugar", "Normal", "Extra Sweet"]),
+            "paymentMethod": random.choice(["Cashless", "Card", "MobilePay"]),
+            "price": random.choice([1.5, 2.0, 2.5, 3.0]),  # in local currency unit
+            "brand": "XJuice",
+            "model": "SmartJuicerX1000",
+            "year": 2024
         }
     }
-    
+
     return json_data
+    
